@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	<select id="query1" parameterType="String" resultType="String">
+		SELECT USER_ID AS userId FROM USERS WHERE USER_ID = #{userId}
+	</select>
+	<select id="query2" resultType="org.kh.member.model.vo.MemberVo">
+		SELECT
+		USER_ID AS userId,
+		USER_PW AS userPw,
+		USER_NICK AS userNick,
+		USER_TEL AS userTel,
+		REG_DATE AS regDate
+		FROM USERS
+		WHERE USER_ID = #{userId} AND USER_PW =
+		#{userPw}
+	</select>
+	<insert id="query3" parameterType="org.kh.member.model.vo.MemberVo">
+		INSERT INTO USERS VALUES(#{userId}, #{userPw}, #{userNick}, #{userTel}, DEFAULT)
+	</insert>
+	<update id="query4" parameterType="org.kh.member.model.vo.MemberVo">
+		UPDATE USERS SET USER_PW = #{userPw}, USER_TEL = #{userTel}, USER_NICK = #{userNick} WHERE USER_ID = #{userId}
+	</update>
+	<delete id="query5" parameterType="org.kh.member.model.vo.MemberVo">
+		DELETE FROM USERS WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+	</delete>
+	<select id="query6" resultType="org.kh.member.model.vo.MemberVo">
+		SELECT
+		USER_ID AS userId,
+		USER_PW AS userPw,
+		USER_NICK AS userNick,
+		USER_TEL AS userTel,
+		REG_DATE AS regDate
+		FROM USERS
+	</select>
+</mapper> 
